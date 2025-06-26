@@ -10,4 +10,5 @@ crate-type = ['cdylib']
 
 [dependencies]
 fend-core = '1'
+nanorand = '0'
 pyo3 = '0'
