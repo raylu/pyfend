@@ -9,6 +9,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
+name = "fend-core"
+version = "1.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "df0b0362bcc3401c355e03954dfacad957c359134bcf1e2a713bbd5b625f36e5"
+
+[[package]]
 name = "heck"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -60,6 +66,7 @@ dependencies = [
 name = "pyfend"
 version = "0.1.0"
 dependencies = [
+ "fend-core",
  "pyo3",
 ]
 

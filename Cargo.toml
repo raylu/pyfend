@@ -9,4 +9,5 @@ name = 'pyfend'
 crate-type = ['cdylib']
 
 [dependencies]
+fend-core = '1'
 pyo3 = '0'
