@@ -29,6 +29,11 @@ mod pyfend {
 		fn new() -> Self {
 			Context(fend_core::Context::new())
 		}
+
+		/// Switch from SimpleText to TerminalFixedWidth mode
+		fn set_output_mode_terminal(&mut self) {
+			self.0.set_output_mode_terminal();
+		}
 	}
 
 	#[pymodule_export]
