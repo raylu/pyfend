@@ -1,5 +1,7 @@
 use pyo3::{create_exception, pymodule};
 
+mod exchange_rates;
+
 #[pymodule]
 mod pyfend {
 	use nanorand::Rng as _;
@@ -9,12 +11,15 @@ mod pyfend {
 	};
 	use std::sync::{LazyLock, Mutex};
 
+	use crate::exchange_rates::ExchangeRateHandler;
+
 	static WYRAND: LazyLock<Mutex<nanorand::WyRand>> = LazyLock::new(|| Mutex::new(nanorand::WyRand::new()));
 
 	#[pyfunction]
 	fn evaluate(input: &str, context: &mut Context) -> PyResult<String> {
 		let Context(fend_context) = context;
 		fend_context.set_random_u32_fn(|| WYRAND.lock().unwrap().generate::<u32>());
+		fend_context.set_exchange_rate_handler_v1(ExchangeRateHandler {});
 		match fend_core::evaluate(input, fend_context) {
 			Ok(output) => Ok(output.get_main_result().to_string()),
 			Err(err_msg) => Err(FendError::new_err(err_msg)),
